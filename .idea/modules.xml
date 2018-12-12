@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/图书管理系统(数据库课程设计).iml" filepath="$PROJECT_DIR$/图书管理系统(数据库课程设计).iml" />
+      <module fileurl="file://$PROJECT_DIR$/图书管理系统Module/图书管理系统Module.iml" filepath="$PROJECT_DIR$/图书管理系统Module/图书管理系统Module.iml" />
+    </modules>
+  </component>
+</project>
