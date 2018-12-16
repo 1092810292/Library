@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -25,16 +27,14 @@ public class SignupGUI {
     private JLabel againLabel;
     private JLabel verifyLabel;
     private JButton refreshButton;
+    private JLabel sexLabel;
+    private JRadioButton manRadioButton;
+    private JRadioButton womanRadioButton;
     int result=0;
+    boolean aBoolean=false;
     String op="";
 
     public SignupGUI() {
-        signupButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
         verifyLabel.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -56,12 +56,27 @@ public class SignupGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(Integer.parseInt(verifyText.getText())==result) {
-                    System.out.println("验证成功，暂且这么着吧");
-                    JFrame frame = new JFrame("SignupSuccessGUI");
-                    frame.setContentPane(new SignupSuccessGUI().signupSuccessPanel);
-                    frame.setDefaultCloseOperation(2);
-                    frame.pack();
-                    frame.setVisible(true);
+                    String nameTextText=nameText.getText();
+                    String personIDTextText=personIDText.getText();
+                    String phoneTextText=phoneText.getText();
+                    String userNameTextText=userNameText.getText();
+                    String passWordTextText = new String(passWordText.getPassword());
+                    String againTextText = new String(againText.getPassword());
+                    boolean sex=true;
+                    if(womanRadioButton.isSelected()){
+                        sex=false;
+                    }
+                    if(passWordTextText.equals(againTextText)) {
+                        aBoolean=new Insert(nameTextText,personIDTextText,sex,phoneTextText,userNameTextText,passWordTextText).insert();
+                        if(aBoolean) {
+                            Succeed.succeed();
+                        }else {
+                            signupError();
+                        }
+                    }
+                    else{
+                        signupError();//有问题
+                    }
                 }
                 else {
                     System.out.println("验证失败！");
@@ -70,7 +85,34 @@ public class SignupGUI {
                 }
             }
         });
+        verifyText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String str = userNameText.getText();
+                if(null != str && userNameText.getText().equals("请输入用户名")){
+                    userNameText.setText("");
+                }
+            }
+        });
+        verifyText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String str = userNameText.getText();
+                if(null == str || userNameText.getText().equals("")){
+                    userNameText.setText("请输入用户名");
+                }
+            }
+        });
     }
+
+    private void signupError() {
+        Error.error();
+        passWordText.setText("");
+        againText.setText("");
+        verify();
+        verifyLabel.setText(op);
+    }
+
     public String verify(){
         int a = (int)(Math.random()*9+1);
         int b = (int)(Math.random()*9+1);
@@ -84,14 +126,5 @@ public class SignupGUI {
         }
         op=String.valueOf(a)+op+ String.valueOf(b);
         return op;
-    }
-
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("SignupGUI");
-        frame.setContentPane(new SignupGUI().signupPanel);
-        frame.setDefaultCloseOperation(2);
-        frame.pack();
-        frame.setVisible(true);
     }
 }

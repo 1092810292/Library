@@ -1,5 +1,5 @@
 import javax.swing.*;
-
+//错误弹窗，使用方式为Error.error();
 public class Error {
     public static void error(){
         JFrame frame = new JFrame("ErrorGUI");
