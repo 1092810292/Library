@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="visitorGUI">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="QueryGUI">
   <grid id="27dc6" binding="bottomPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="516" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="500" height="400"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="7d6e2" binding="findPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -28,6 +30,7 @@
           <component id="5f3e6" class="javax.swing.JRadioButton" binding="bookNameRadioButton">
             <constraints/>
             <properties>
+              <selected value="true"/>
               <text value="书名"/>
             </properties>
           </component>
@@ -51,30 +54,36 @@
           </component>
         </children>
       </grid>
-      <grid id="c2b14" binding="ioPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="c2b14" binding="ioPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="771ce" class="javax.swing.JTextField" binding="inTextField">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
+          <component id="b0170" class="javax.swing.JTextField" binding="inTextField">
+            <constraints border-constraint="North"/>
             <properties/>
           </component>
-          <component id="c674a" class="javax.swing.JTextArea" binding="outTextArea">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
-            </constraints>
+          <scrollpane id="7a31d" binding="outScrollPane">
+            <constraints border-constraint="Center"/>
             <properties/>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="2de4d" class="javax.swing.JTextArea" binding="outTextArea">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name=" bookInformation">
+      <member id="5f3e6"/>
+      <member id="26242"/>
+      <member id="8432f"/>
+      <member id="a5ff7"/>
+    </group>
+  </buttonGroups>
 </form>
