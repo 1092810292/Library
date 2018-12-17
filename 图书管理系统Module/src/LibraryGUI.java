@@ -1,3 +1,6 @@
+import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+import org.pushingpixels.substance.api.skin.BusinessBlackSteelSkin;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -22,13 +25,14 @@ public class LibraryGUI {
     private JPasswordField passwordText;
     public static Connection connection = null;
     public static String userName;
+    private String passWord;
 
 
     private void signin() {
         //如果是普通用户
         if(normalRadioButton.isSelected()) {
             userName = userNameText.getText();
-            String passWord = new String(passwordText.getPassword());
+            passWord = new String(passwordText.getPassword());
             NormalSignin normal=new NormalSignin(userName,passWord);
             try {
                 if(normal.normalSign()) {
@@ -37,16 +41,17 @@ public class LibraryGUI {
                     frame.setDefaultCloseOperation(2);
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocation(900,500);
                 }else{
                     Error.error();
-                    userNameText.setText("");
-                    passwordText.setText("");
+                    userNameText.setText(null);
+                    passwordText.setText(null);
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
         }
-        //如果是管理员
+        //如果是管理员（功能还未实现）
         if(managerRadioButton.isSelected()) {
             String userName = userNameText.getText();
             String passWord = new String(passwordText.getPassword());
@@ -58,10 +63,11 @@ public class LibraryGUI {
                     frame.setDefaultCloseOperation(2);
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocation(900,500);
                 }else {
                     Error.error();
-                    userNameText.setText("");
-                    passwordText.setText("");
+                    userNameText.setText(null);
+                    passwordText.setText(null);
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -79,6 +85,7 @@ public class LibraryGUI {
                 frame.setDefaultCloseOperation(2);
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocation(900,500);
             }
         });
         //鼠标单击登录按钮，进入signin方法，搜索数据库，符合用户名和密码就弹出用户（NormalUser）窗口(ok)
@@ -94,7 +101,7 @@ public class LibraryGUI {
             public void focusGained(FocusEvent e) {
                 String str = userNameText.getText();
                 if(null != str && userNameText.getText().equals("请输入用户名")){
-                    userNameText.setText("");
+                    userNameText.setText(null);
                 }
             }
         });
@@ -112,16 +119,19 @@ public class LibraryGUI {
         passwordText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                passwordText.setText("");
-                passwordText.setEchoChar((char)42);
+                passWord= new String(passwordText.getPassword());
+                if (null != passwordText && passWord.equals("请输入密码")) {
+                    passwordText.setEchoChar((char)42);
+                    passwordText.setText(null);
+                }
             }
         });
         //当密码输入框失去焦点，如果框内未输入，则取消加密并显示“请输入密码”
         passwordText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                char[] str=passwordText.getPassword();
-                if(str==null || (str!=null && str.length==0)){
+                passWord= new String(passwordText.getPassword());
+                if(passWord==null || (passWord!=null && passWord.length()==0)){
                     passwordText.setEchoChar((char)0);
                     passwordText.setText("请输入密码");
                 }
@@ -144,6 +154,7 @@ public class LibraryGUI {
                 frame.setDefaultCloseOperation(2);
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocation(900,500);
             }
         });
     }
@@ -151,12 +162,20 @@ public class LibraryGUI {
     public static void main(String[] args) throws SQLException {
         LinkSQL linkSQL = new LinkSQL();
         connection = linkSQL.link();
-        JFrame frame = new JFrame("LibraryGUI");
-        frame.setContentPane(new LibraryGUI().bottomPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-
+        if(connection!=null) {
+            JFrame frame = new JFrame("LibraryGUI");
+            frame.setContentPane(new LibraryGUI().bottomPanel);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocation(900,500);
+        }else {
+            JFrame frame = new JFrame("Mistake");
+            frame.setContentPane(new Mistake().mistakePanel);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocation(900,500);
+        }
     }
 }

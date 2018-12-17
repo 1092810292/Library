@@ -5,8 +5,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
 
-public class SignupGUI {
+public class SignupGUI{
     public JPanel signupPanel;
     private JPanel westPanel;
     private JPanel eastPanel;
@@ -33,6 +34,7 @@ public class SignupGUI {
     int result=0;
     boolean aBoolean=false;
     String op="";
+    String query="";
 
     public SignupGUI() {
         verifyLabel.addPropertyChangeListener(new PropertyChangeListener() {
@@ -56,7 +58,7 @@ public class SignupGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(Integer.parseInt(verifyText.getText())==result) {
-                    String nameTextText=nameText.getText();
+                   String  nameTextText=nameText.getText();
                     String personIDTextText=personIDText.getText();
                     String phoneTextText=phoneText.getText();
                     String userNameTextText=userNameText.getText();
@@ -88,18 +90,112 @@ public class SignupGUI {
         verifyText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                String str = userNameText.getText();
-                if(null != str && userNameText.getText().equals("请输入用户名")){
-                    userNameText.setText("");
+                String str = verifyText.getText();
+                if(null != str && verifyText.getText().equals("请输入验证码")){
+                    verifyText.setText(null);
                 }
             }
         });
         verifyText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                String str = userNameText.getText();
-                if(null == str || userNameText.getText().equals("")){
-                    userNameText.setText("请输入用户名");
+                String str = verifyText.getText();
+                if(null == str || verifyText.getText().equals("")){
+                    verifyText.setText("请输入验证码");
+                }
+            }
+        });
+        nameText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String nameTextText = nameText.getText();
+                if (null != nameTextText && nameText.getText().equals("限制5位请重新输入")) {
+                    nameText.setText(null);
+                }
+            }
+        });
+        nameText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String nameTextText=nameText.getText();
+                if(nameTextText.length()>5){
+                    nameText.setText("限制5位请重新输入");
+                }
+            }
+        });
+        personIDText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String personIDTextText = personIDText.getText();
+                if (personIDTextText.length() != 18) {
+                    personIDText.setText("限制18位请重新输入");
+                }
+            }
+        });
+        personIDText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String personIDTextText = personIDText.getText();
+                if (null != personIDTextText && personIDText.getText().equals("限制18位请重新输入")) {
+                    personIDText.setText(null);
+                }
+            }
+        });
+        userNameText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String userNameTextText = userNameText.getText();
+                if (null != userNameTextText && userNameText.getText().equals("限制10位请重新输入")) {
+                    userNameText.setText(null);
+                }
+            }
+        });
+        userNameText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String userNameTextText = userNameText.getText();
+                if (userNameTextText.length() != 10) {
+                    userNameText.setText("限制10位请重新输入");
+                }
+            }
+        });
+        passWordText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String passWordTextText = new String(passWordText.getPassword());
+                if (passWordTextText.length() != 10) {
+                    passWordText.setEchoChar((char)0);
+                    passWordText.setText("限制10位请重新输入");
+                }
+            }
+        });
+        againText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                String againTextText = new String(againText.getPassword());
+                if (againTextText.length() != 10) {
+                    againText.setEchoChar((char)0);
+                    againText.setText("限制10位请重新输入");
+                }
+            }
+        });
+        passWordText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String passWordTextText = new String(passWordText.getPassword());
+                if (null != passWordTextText && passWordTextText.equals("限制10位请重新输入")) {
+                    passWordText.setEchoChar((char)42);
+                    passWordText.setText(null);
+                }
+            }
+        });
+        againText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                String againTextText = new String(againText.getPassword());
+                if (null != againTextText && againTextText.equals("限制10位请重新输入")) {
+                    againText.setEchoChar((char)42);
+                    againText.setText(null);
                 }
             }
         });
@@ -107,8 +203,8 @@ public class SignupGUI {
 
     private void signupError() {
         Error.error();
-        passWordText.setText("");
-        againText.setText("");
+        passWordText.setText(null);
+        againText.setText(null);
         verify();
         verifyLabel.setText(op);
     }

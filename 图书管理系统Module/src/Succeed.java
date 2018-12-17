@@ -7,5 +7,6 @@ public class Succeed {
         frame.setDefaultCloseOperation(2);
         frame.pack();
         frame.setVisible(true);
+        frame.setLocation(900,500);
     }
 }

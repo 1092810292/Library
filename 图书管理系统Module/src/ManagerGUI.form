@@ -10,7 +10,10 @@
       <component id="63265" class="javax.swing.JLabel">
         <constraints border-constraint="Center"/>
         <properties>
-          <text value="nice"/>
+          <font size="28"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="功能还未实现！！敬请期待！！！"/>
         </properties>
       </component>
     </children>

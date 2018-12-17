@@ -17,7 +17,7 @@ public class ManagerSignin {
         try {
             //在连接对象的基础上创建会话对象
             Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
-            String sql = "SELECT userName FROM NormalUser WHERE userName=" + userName+" AND passWord="+ passWord;
+            String sql = "SELECT managerUserName FROM Manager WHERE managerUserName=" + userName+" AND managerPassWord="+ passWord;
             preparedStatement = LibraryGUI.connection.prepareStatement(sql);
             nameResultSet = preparedStatement.executeQuery();
             if (nameResultSet.next()) {
