@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="BookManagerGUI">
+  <grid id="27dc6" binding="bottonPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="bc3c5" binding="tabbedPane">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="d0179" binding="searchPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="书籍管理"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="82a8" binding="radioButtonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="dd6df" class="javax.swing.JRadioButton" binding="bookNameRadioButton">
+                    <constraints/>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="RadioButton"/>
+                    </properties>
+                  </component>
+                  <component id="eac45" class="javax.swing.JRadioButton" binding="ISBNRadioButton">
+                    <constraints/>
+                    <properties>
+                      <text value="RadioButton"/>
+                    </properties>
+                  </component>
+                  <component id="fe9ec" class="javax.swing.JRadioButton" binding="writerRadioButton">
+                    <constraints/>
+                    <properties>
+                      <text value="RadioButton"/>
+                    </properties>
+                  </component>
+                  <component id="e5a61" class="javax.swing.JRadioButton" binding="publishingRadioButton">
+                    <constraints/>
+                    <properties>
+                      <text value="RadioButton"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="39cef" binding="buttonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="South"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="df663" class="javax.swing.JButton" binding="findButton">
+                    <constraints/>
+                    <properties>
+                      <text value="查询"/>
+                    </properties>
+                  </component>
+                  <component id="ef83b" class="javax.swing.JButton" binding="updateButton">
+                    <constraints/>
+                    <properties>
+                      <text value="修改"/>
+                    </properties>
+                  </component>
+                  <component id="eed6" class="javax.swing.JButton" binding="addButton">
+                    <constraints/>
+                    <properties>
+                      <text value="添加"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="a9efb" binding="inPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="30505" class="javax.swing.JTextField" binding="inTextField">
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                  </component>
+                  <scrollpane id="9a8cf" binding="outScrollPane">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="62f1d" class="javax.swing.JTable" binding="outTable">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="d642f" binding="personPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="个人信息"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="284c9" binding="personButtonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="South"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="be37f" class="javax.swing.JButton" binding="button">
+                    <constraints/>
+                    <properties>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <scrollpane id="15a28" binding="personScrollPane">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="29af0" class="javax.swing.JList" binding="personList">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="buttonGroup">
+      <member id="e5a61"/>
+      <member id="dd6df"/>
+      <member id="eac45"/>
+      <member id="fe9ec"/>
+    </group>
+  </buttonGroups>
+</form>

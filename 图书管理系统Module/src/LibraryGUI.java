@@ -1,6 +1,3 @@
-import org.pushingpixels.substance.api.SubstanceLookAndFeel;
-import org.pushingpixels.substance.api.skin.BusinessBlackSteelSkin;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -54,19 +51,29 @@ public class LibraryGUI {
         if(managerRadioButton.isSelected()) {
             String userName = userNameText.getText();
             String passWord = new String(passwordText.getPassword());
-            connection.close();
-            LinkSQL linkSQL = new LinkSQL("Manager",userName,passWord);
-            connection = linkSQL.link();
             ManagerSignin managerSignin=new ManagerSignin(userName,passWord);
             try {
                 if("用户管理员".equals(managerSignin.managerSign())) {
-                    JFrame frame = new JFrame("ManagerGUI");
-                    frame.setContentPane(new ManagerGUI().panel1);
+                    JFrame frame = new JFrame("UserManagerGUI");
+                    frame.setContentPane(new UserManagerGUI().bottomPanel);
                     frame.setDefaultCloseOperation(2);
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocation(900,500);
-                }else {
+                }else if("图书管理员".equals(managerSignin.managerSign())){
+                    JFrame frame = new JFrame("BookManagerGUI");
+                    frame.setContentPane(new BookManagerGUI().bottonPanel);
+                    frame.setDefaultCloseOperation(2);
+                    frame.pack();
+                    frame.setVisible(true);
+                }else if("普通职员".equals(managerSignin.managerSign())){
+                    JFrame frame = new JFrame("NormalManagerGUI");
+                    frame.setContentPane(new NormalManagerGUI().bottomPanel);
+                    frame.setDefaultCloseOperation(2);
+                    frame.pack();
+                    frame.setVisible(true);
+                }
+                else {
                     Error.error("管理员帐号或密码错误请重新输入！");
                     passwordText.setText(null);
                 }
