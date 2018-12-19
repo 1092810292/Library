@@ -30,6 +30,13 @@
                       <text value="修改"/>
                     </properties>
                   </component>
+                  <component id="b05db" class="javax.swing.JButton" binding="affirmButton">
+                    <constraints/>
+                    <properties>
+                      <enabled value="false"/>
+                      <text value="确认"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
               <grid id="a4878" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -126,6 +133,7 @@
                     </constraints>
                     <properties>
                       <editable value="false"/>
+                      <focusable value="false"/>
                     </properties>
                   </component>
                 </children>

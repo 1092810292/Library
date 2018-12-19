@@ -14,7 +14,7 @@ public class Query {
     String place="";
     ArrayList<String> list=new ArrayList<String>();
     String str="";
-    Query(String queryKind,String bookInformation){
+    Query(String queryKind, String bookInformation){
         this.queryKind=queryKind;
         this.bookInformation=bookInformation;
     }

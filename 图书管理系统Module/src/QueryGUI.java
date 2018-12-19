@@ -1,12 +1,8 @@
 import com.sun.deploy.util.StringUtils;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class QueryGUI {
     public JPanel bottomPanel;

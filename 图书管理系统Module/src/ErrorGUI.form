@@ -12,7 +12,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="错误请重试！"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

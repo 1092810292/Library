@@ -1,8 +1,8 @@
 import java.sql.*;
 public class LinkSQL {
     Connection connection = null;
-    private final String user="1092810292";
-    private final String pass="wanglubing123";
+    private  String user="1092810292";
+    private  String pass="wanglubing123";
     private String url="";
 
      LinkSQL() {
@@ -11,9 +11,11 @@ public class LinkSQL {
     LinkSQL(String databaseName) {
         url = "jdbc:sqlserver://localhost:1433;databaseName=" + databaseName;//端口：localhost，访问的数据库名称：databaseName
     }
-//    LinkSQL(String localhost,String databaseName) {
-//        url = "jdbc:sqlserver://localhost:" + localhost + ";databaseName=" + databaseName;//端口：localhost，访问的数据库名称：databaseName
-//    }
+    LinkSQL(String databaseName,String user,String pass) {
+        url = "jdbc:sqlserver://localhost:1433;databaseName=" + databaseName;//端口：localhost，访问的数据库名称：databaseName
+        this.user=user;
+        this.pass=pass;
+    }
 
     public Connection link(){
         try {

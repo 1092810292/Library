@@ -15,6 +15,15 @@ public class PersonQuery {
     String publishing = "";
     ArrayList<String> list = new ArrayList<String>();
     String str = "";
+    String information="";
+    boolean change=false;
+    String sql="";
+
+    PersonQuery(String queryKind,String information,boolean change){
+        this.queryKind=queryKind;
+        this.information=information;
+        this.change=change;
+    }
 
     PersonQuery(String queryKind, String userName) {
     this.queryKind = queryKind;
@@ -25,7 +34,11 @@ public class PersonQuery {
             try {
                 //在连接对象的基础上创建会话对象
                 Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
-                String sql = "SELECT "+queryKind+" FROM NormalUser WHERE userName='"+userName+"'";
+                if(change){
+                    sql = "SELECT "+queryKind+" FROM NormalUser WHERE "+queryKind+"='"+information+"'";
+                }else {
+                    sql = "SELECT " + queryKind + " FROM NormalUser WHERE userName='" + userName + "'";
+                }
                 preparedStatement = LibraryGUI.connection.prepareStatement(sql);
                 resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {

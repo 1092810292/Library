@@ -32,9 +32,12 @@ public class NormalGUI {
     private JLabel personIDInlabel;
     private JLabel sexInlabel;
     private JLabel userNameInlabel;
+    private JButton affirmButton;
     int choice = 0;
+    boolean verify=false;
     private boolean result=false;
     String string = "";
+    int count=0;
 
     public NormalGUI() throws SQLException {
         string = new PersonQuery("name", LibraryGUI.userName).personQuery();
@@ -102,54 +105,64 @@ public class NormalGUI {
                 }
             }
         });
-        outTextArea.addMouseWheelListener(new MouseWheelListener() {
-            @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                outTextArea.dispatchEvent(e);
-            }
-        });
+//        outTextArea.addMouseWheelListener(new MouseWheelListener() {
+//            @Override
+//            public void mouseWheelMoved(MouseWheelEvent e) {
+//                outTextArea.dispatchEvent(e);
+//            }
+//        });
 
         changeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                phoneInText.setEditable(true);
-                changeButton.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        string=phoneInText.getText();
-                        result=new Update(string).update();
-                        if(result){
-                            Succeed.succeed();
-                            phoneInText.setEditable(false);
-                            string = new PersonQuery("phone", LibraryGUI.userName).personQuery();
-                            phoneInText.setText(string);
-                        }else{
-                            Error.error();
-                            phoneInText.setEditable(false);
-                            string = new PersonQuery("phone", LibraryGUI.userName).personQuery();
-                            phoneInText.setText(string);
-                        }
+                phoneInText.setEditable(true);//设置文本框可修改
+                changeButton.setEnabled(false);//设置修改按钮不可按
+                affirmButton.setEnabled(true);//设置确认按钮可按
+                phoneInText.setFocusable(true);
+            }
+        });
+        affirmButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (verify) {//判断输入是否正确
+                    string = phoneInText.getText();//输入正确就接受JTextField
+                    result = new Update(string).update();//连接数据库更新数据
+                    if (result) {//如果有结果
+                        Succeed.succeed();//弹出修改成功窗口
+                        phoneInText.setEditable(false);//设置不可更改
+                        changeButton.setEnabled(true);//设置修改按钮可按
+                        affirmButton.setEnabled(false);//设置确认按钮不可按
+                        phoneInText.setFocusable(true);
+                        string = new PersonQuery("phone", LibraryGUI.userName).personQuery();//搜索数据库
+                        phoneInText.setText(string);//将搜索结果并显示在文本框
+                    } else {
+                        Error.error("无法修改请重试！若多次修改无效请联系管理员寻求帮助！");
+                        phoneInText.setEditable(false);
+                        string = new PersonQuery("phone", LibraryGUI.userName).personQuery();
+                        phoneInText.setText(string);
                     }
-                });
+                }
             }
         });
         phoneInText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                String str = phoneInText.getText();
-                if (null != str && phoneInText.getText().equals(string)) {
-                    phoneInText.setText("");
+                String str=phoneInText.getText();
+                if(str.equals(string)){
+                   phoneInText.setText("");
                 }
             }
         });
         phoneInText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                String str = phoneInText.getText();
-                if (null == str || phoneInText.getText().equals("")) {
-                    phoneInText.setText("请输入新手机号");
-                }
+                String phoneTextText = phoneInText.getText();
+                if (phoneTextText==null||phoneTextText.equals("")||phoneTextText.length()!=11){
+                    Error.error("限制11位请重新输入！");
+                    phoneInText.setText("");
+                }else verify=true;
             }
         });
+
     }
 }

@@ -28,7 +28,7 @@ public class LibraryGUI {
     private String passWord;
 
 
-    private void signin() {
+    private void signin() throws SQLException {
         //如果是普通用户
         if(normalRadioButton.isSelected()) {
             userName = userNameText.getText();
@@ -43,21 +43,23 @@ public class LibraryGUI {
                     frame.setVisible(true);
                     frame.setLocation(900,500);
                 }else{
-                    Error.error();
-                    userNameText.setText(null);
+                    Error.error("用户帐号或密码错误请重新输入！");
                     passwordText.setText(null);
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
         }
-        //如果是管理员（功能还未实现）
+        //如果是管理员（实现中）
         if(managerRadioButton.isSelected()) {
             String userName = userNameText.getText();
             String passWord = new String(passwordText.getPassword());
+            connection.close();
+            LinkSQL linkSQL = new LinkSQL("Manager",userName,passWord);
+            connection = linkSQL.link();
             ManagerSignin managerSignin=new ManagerSignin(userName,passWord);
             try {
-                if(managerSignin.managerSign()) {
+                if("用户管理员".equals(managerSignin.managerSign())) {
                     JFrame frame = new JFrame("ManagerGUI");
                     frame.setContentPane(new ManagerGUI().panel1);
                     frame.setDefaultCloseOperation(2);
@@ -65,8 +67,7 @@ public class LibraryGUI {
                     frame.setVisible(true);
                     frame.setLocation(900,500);
                 }else {
-                    Error.error();
-                    userNameText.setText(null);
+                    Error.error("管理员帐号或密码错误请重新输入！");
                     passwordText.setText(null);
                 }
             } catch (SQLException e1) {
@@ -92,7 +93,11 @@ public class LibraryGUI {
         signinButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                signin();
+                try {
+                    signin();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         //当用户名输入框获得焦点，如果框内输入为“请输入用户名”则清空
