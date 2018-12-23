@@ -49,26 +49,13 @@ public class LibraryGUI {
         }
         //如果是管理员（实现中）
         if(managerRadioButton.isSelected()) {
-            String userName = userNameText.getText();
-            String passWord = new String(passwordText.getPassword());
+            userName = userNameText.getText();
+            passWord = new String(passwordText.getPassword());
             ManagerSignin managerSignin=new ManagerSignin(userName,passWord);
             try {
-                if("用户管理员".equals(managerSignin.managerSign())) {
-                    JFrame frame = new JFrame("UserManagerGUI");
-                    frame.setContentPane(new UserManagerGUI().bottomPanel);
-                    frame.setDefaultCloseOperation(2);
-                    frame.pack();
-                    frame.setVisible(true);
-                    frame.setLocation(900,500);
-                }else if("图书管理员".equals(managerSignin.managerSign())){
+                if("图书管理员".equals(managerSignin.managerSign())){
                     JFrame frame = new JFrame("BookManagerGUI");
                     frame.setContentPane(new BookManagerGUI().bottonPanel);
-                    frame.setDefaultCloseOperation(2);
-                    frame.pack();
-                    frame.setVisible(true);
-                }else if("普通职员".equals(managerSignin.managerSign())){
-                    JFrame frame = new JFrame("NormalManagerGUI");
-                    frame.setContentPane(new NormalManagerGUI().bottomPanel);
                     frame.setDefaultCloseOperation(2);
                     frame.pack();
                     frame.setVisible(true);

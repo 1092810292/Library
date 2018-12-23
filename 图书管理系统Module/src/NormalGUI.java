@@ -44,8 +44,6 @@ public class NormalGUI {
         nameInlabel.setText(string);
         string = new PersonQuery("personID", LibraryGUI.userName).personQuery();
         personIDInlabel.setText(string);
-//        string=new PersonQuery("age",LibraryGUI.userName).personQuery();
-//        ageInlabel.setText(string);
         string = new PersonQuery("sex", LibraryGUI.userName).personQuery();
         sexInlabel.setText(string);
         string = new PersonQuery("userName", LibraryGUI.userName).personQuery();
@@ -105,12 +103,6 @@ public class NormalGUI {
                 }
             }
         });
-//        outTextArea.addMouseWheelListener(new MouseWheelListener() {
-//            @Override
-//            public void mouseWheelMoved(MouseWheelEvent e) {
-//                outTextArea.dispatchEvent(e);
-//            }
-//        });
 
         changeButton.addMouseListener(new MouseAdapter() {
             @Override

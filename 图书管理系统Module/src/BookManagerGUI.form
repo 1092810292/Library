@@ -28,25 +28,25 @@
                     <constraints/>
                     <properties>
                       <selected value="true"/>
-                      <text value="RadioButton"/>
+                      <text value="书名"/>
                     </properties>
                   </component>
                   <component id="eac45" class="javax.swing.JRadioButton" binding="ISBNRadioButton">
                     <constraints/>
                     <properties>
-                      <text value="RadioButton"/>
+                      <text value="书号ISBN"/>
                     </properties>
                   </component>
                   <component id="fe9ec" class="javax.swing.JRadioButton" binding="writerRadioButton">
                     <constraints/>
                     <properties>
-                      <text value="RadioButton"/>
+                      <text value="作者"/>
                     </properties>
                   </component>
                   <component id="e5a61" class="javax.swing.JRadioButton" binding="publishingRadioButton">
                     <constraints/>
                     <properties>
-                      <text value="RadioButton"/>
+                      <text value="出版社"/>
                     </properties>
                   </component>
                 </children>
@@ -90,7 +90,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="62f1d" class="javax.swing.JTable" binding="outTable">
+                      <component id="1fdcf" class="javax.swing.JTextArea" binding="outTextArea">
                         <constraints/>
                         <properties/>
                       </component>
@@ -107,30 +107,54 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="284c9" binding="personButtonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                <constraints border-constraint="South"/>
+              <grid id="825dc" binding="LabelPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints border-constraint="West"/>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="be37f" class="javax.swing.JButton" binding="button">
-                    <constraints/>
+                  <component id="b2733" class="javax.swing.JLabel" binding="managerNameLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
                     <properties>
-                      <text value="Button"/>
+                      <text value="姓名"/>
+                    </properties>
+                  </component>
+                  <component id="75ba4" class="javax.swing.JLabel" binding="managerDutyLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="职务"/>
                     </properties>
                   </component>
                 </children>
               </grid>
-              <scrollpane id="15a28" binding="personScrollPane">
-                <constraints border-constraint="Center"/>
+              <grid id="f3af0" binding="managerOutPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints border-constraint="East"/>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="29af0" class="javax.swing.JList" binding="personList">
-                    <constraints/>
-                    <properties/>
+                  <component id="f3a56" class="javax.swing.JLabel" binding="managerNameOutLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="78794" class="javax.swing.JLabel" binding="managerDutyOutLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                 </children>
-              </scrollpane>
+              </grid>
             </children>
           </grid>
         </children>
