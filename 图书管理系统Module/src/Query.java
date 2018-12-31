@@ -20,12 +20,9 @@ public class Query {
     }
     public ArrayList query(){
         try {
-            //在连接对象的基础上创建会话对象
-//            Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
             String sql = "select * from Book where "+queryKind+" like '%"+bookInformation+"%'";
             preparedStatement = LibraryGUI.connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
-            //以上无需修改
             while(resultSet.next()) {
                 bookName=resultSet.getString("bookName");
                 ISBN=resultSet.getString("ISBN");
@@ -38,6 +35,7 @@ public class Query {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Error.error("搜索图书信息时失败！");
             System.out.println("失败");
         }
         return list;

@@ -14,18 +14,16 @@ public class Update {
 
     public boolean update(){
         try {
-
-            //在连接对象的基础上创建会话对象
             Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
             String sql = "update NormalUser set phone="+update+" where userName="+LibraryGUI.userName;
             preparedStatement = LibraryGUI.connection.prepareStatement(sql);
             int rs = statement.executeUpdate(sql);
-            //以上无需修改
             if(rs>0) {
                 result=true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Error.error("更新用户手机号时失败！");
             System.out.println("失败");
         }
         return result;

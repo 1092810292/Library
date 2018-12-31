@@ -1,5 +1,10 @@
 import javax.swing.*;
-//错误弹窗，使用方式为Error.error();
+
+/**
+ * 错误弹窗，使用方式为Error.error();
+ * @author 王陆斌
+ * @since JDK1.8
+ */
 public class Error {
     public static void error(String errorHint){
         JFrame frame = new JFrame("ErrorGUI");

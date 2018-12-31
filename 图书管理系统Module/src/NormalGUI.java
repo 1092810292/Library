@@ -122,18 +122,19 @@ public class NormalGUI {
                     if (result) {//如果有结果
                         Succeed.succeed();//弹出修改成功窗口
                         phoneInText.setEditable(false);//设置不可更改
+                        phoneInText.setFocusable(false);
                         changeButton.setEnabled(true);//设置修改按钮可按
                         affirmButton.setEnabled(false);//设置确认按钮不可按
-                        phoneInText.setFocusable(true);
-                        string = new PersonQuery("phone", LibraryGUI.userName).personQuery();//搜索数据库
-                        phoneInText.setText(string);//将搜索结果并显示在文本框
                     } else {
                         Error.error("无法修改请重试！若多次修改无效请联系管理员寻求帮助！");
                         phoneInText.setEditable(false);
                         string = new PersonQuery("phone", LibraryGUI.userName).personQuery();
                         phoneInText.setText(string);
+                        phoneInText.setFocusable(false);
                     }
                 }
+                string = new PersonQuery("phone", LibraryGUI.userName).personQuery();//搜索数据库
+                phoneInText.setText(string);//将搜索结果并显示在文本框
             }
         });
         phoneInText.addFocusListener(new FocusAdapter() {

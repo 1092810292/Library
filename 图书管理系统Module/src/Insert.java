@@ -2,8 +2,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * 该类实现数据库的用户表的插入功能，搭配注册功能使用
+ * @author 王陆斌
+ * @since JDK1.8
+ */
 public class Insert {
-    PreparedStatement preparedStatement=null;
+    private PreparedStatement preparedStatement=null;
     private String update;
     private boolean result=false;
     private String nameTextText;
@@ -27,6 +32,10 @@ public class Insert {
         }
     }
 
+    /**
+     * 该方法实现了数据库的NormalUser表的插入方法
+     * @return 插入成功返回true
+     */
     public boolean insert(){
         try {
             //在连接对象的基础上创建会话对象
@@ -40,6 +49,7 @@ public class Insert {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Error.error("注册插入时失败！");
             System.out.println("失败");
         }
         return result;

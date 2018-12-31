@@ -133,6 +133,7 @@
                     </constraints>
                     <properties>
                       <editable value="false"/>
+                      <enabled value="true"/>
                       <focusable value="false"/>
                     </properties>
                   </component>

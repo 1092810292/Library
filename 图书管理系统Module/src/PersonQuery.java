@@ -4,16 +4,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * 用户的搜索类
+ * @author 王陆斌
+ * @since JDK1.8
+ * @since JDBC6.2
+ *
+ */
 public class PersonQuery {
     private String queryKind;
     private String userName;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    String bookName = "";
-    String ISBN = "";
-    String writer = "";
-    String publishing = "";
-    ArrayList<String> list = new ArrayList<String>();
     String str = "";
     String information="";
     boolean change=false;
@@ -32,8 +34,6 @@ public class PersonQuery {
 
     public String  personQuery() {
             try {
-                //在连接对象的基础上创建会话对象
-                Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
                 if(change){
                     sql = "SELECT "+queryKind+" FROM NormalUser WHERE "+queryKind+"='"+information+"'";
                 }else {
@@ -46,7 +46,7 @@ public class PersonQuery {
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                System.out.println("失败");
+                Error.error("搜索用户信息时失败！");
             }
             return str;
         }
