@@ -145,29 +145,29 @@ public class BookManagerGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 PreparedStatement preparedStatement;
-                String 所借书书号=textField1.getText();
-                String 借书人帐号=textField2.getText();
-                String 借书时间=systemTime;
+                String borrowISBN=textField1.getText();
+                String borrowAccount=textField2.getText();
+                String borrowTime=systemTime;
                 boolean result=false;
                 String list_str="";
-                String string = new PersonQuery("userName",借书人帐号,true).personQuery();
-                ArrayList list = new Query("ISBN", 所借书书号).query();
+                String string = new PersonQuery("userName",borrowAccount,true).personQuery();
+                ArrayList list = new Query("ISBN", borrowISBN).query();
                 for (Object object : list) {
                     list_str = StringUtils.join(list, "");
                 }
-                if(!string.equals(借书人帐号)){
+                if(!string.equals(borrowAccount)){
                     Error.error("借书人帐号输入错误！");
-                }else if(!list_str.equals(所借书书号)){
+                }else if(!list_str.equals(borrowISBN)){
                     Error.error("所借书书号输入错误！");
                 }
                 try {
                     //在连接对象的基础上创建会话对象
                     Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
-                    String sql = "insert into 借还(所借书书号,借书人帐号,借书时间) values(?,?,?)";
+                    String sql = "insert into BorrowReturnBooks(borrowISBN,borrowAccount,borrowTime) values(?,?,?)";
                     preparedStatement = LibraryGUI.connection.prepareStatement(sql);
-                    preparedStatement.setString(1,所借书书号);
-                    preparedStatement.setString(2,借书人帐号);
-                    preparedStatement.setString(3,借书时间);
+                    preparedStatement.setString(1,borrowISBN);
+                    preparedStatement.setString(2,borrowAccount);
+                    preparedStatement.setString(3,borrowTime);
                     int rs = preparedStatement.executeUpdate();
                     //以上无需修改
                     if(rs!=0) {
@@ -188,29 +188,29 @@ public class BookManagerGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 PreparedStatement preparedStatement;
-                String 所借书书号=textField4.getText();
-                String 借书人帐号=textField5.getText();
-                String 还书时间=systemTime;
+                String borrowISBN=textField4.getText();
+                String borrowAccount=textField5.getText();
+                String returnTime=systemTime;
                 boolean result=false;
                 String list_str="";
-                String string = new PersonQuery("userName",借书人帐号,true).personQuery();
-                ArrayList list = new Query("ISBN", 所借书书号).query();
+                String string = new PersonQuery("userName",borrowAccount,true).personQuery();
+                ArrayList list = new Query("ISBN", borrowISBN).query();
                 for (Object object : list) {
                     list_str = StringUtils.join(list, "");
                 }
-                if(string.equals(借书人帐号)){
+                if(string.equals(borrowAccount)){
                     Error.error("借书人帐号输入错误！");
-                }else if(list_str.equals(所借书书号)){
+                }else if(list_str.equals(borrowISBN)){
                     Error.error("所借书书号输入错误！");
                 }
                 try {
                     //在连接对象的基础上创建会话对象
                     Statement statement = LibraryGUI.connection.createStatement();//ct是连接对象，stmt是会话对象
-                    String sql = "update 借还 set 还书时间=? where 所借书书号=? and 借书人帐号=?";
+                    String sql = "update BorrowReturnBooks set returnTime=? where borrowISBN=? and borrowAccount=?";
                     preparedStatement = LibraryGUI.connection.prepareStatement(sql);
-                    preparedStatement.setString(1,还书时间);
-                    preparedStatement.setString(2,所借书书号);
-                    preparedStatement.setString(3,借书人帐号);
+                    preparedStatement.setString(1,returnTime);
+                    preparedStatement.setString(2,borrowISBN);
+                    preparedStatement.setString(3,borrowAccount);
                     int rs = preparedStatement.executeUpdate();
                     //以上无需修改
                     if(rs!=0) {
